@@ -1,0 +1,9 @@
+json{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "drmarcuscapanema.com.br",
+      "permanent": true
+    }
+  ]
+}

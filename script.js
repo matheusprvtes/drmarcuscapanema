@@ -99,4 +99,28 @@ const CONTACT = {
     }, { rootMargin: "-45% 0px -50% 0px" });
     sections.forEach(function (s) { spy.observe(s); });
   }
+
+  // ---- Carrossel do hero (uma imagem por vez, loop infinito) ----
+  var prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".carousel").forEach(function (car) {
+    var slides = Array.prototype.slice.call(car.querySelectorAll(".carousel__slide"));
+    if (slides.length < 2) return;
+    var dots = Array.prototype.slice.call(car.querySelectorAll(".carousel__dot"));
+    var idx = 0, timer = null, DELAY = 3800;
+    function show(n) {
+      idx = (n + slides.length) % slides.length;
+      slides.forEach(function (s, k) { s.classList.toggle("is-active", k === idx); });
+      dots.forEach(function (d, k) {
+        d.classList.toggle("is-active", k === idx);
+        d.setAttribute("aria-selected", k === idx ? "true" : "false");
+      });
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function start() { if (!prefersReduced) { stop(); timer = setInterval(function () { show(idx + 1); }, DELAY); } }
+    dots.forEach(function (d, k) { d.addEventListener("click", function () { show(k); start(); }); });
+    car.addEventListener("mouseenter", stop);
+    car.addEventListener("mouseleave", start);
+    show(0);
+    start();
+  });
 })();

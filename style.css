@@ -368,6 +368,92 @@ p { text-wrap: pretty; }
   .hero__badge { left: 12px; bottom: 12px; padding: .55rem .8rem; }
 }
 
+/* =========================================================
+   SUBPÁGINAS (sobre / procedimentos / depoimentos / contato / blog)
+   ========================================================= */
+/* Hero simples (sem imagem), centralizado */
+.hero-lite { padding-top: clamp(4.6rem, 8vw, 6.5rem); }
+.section__head--center { margin-inline: auto; text-align: center; }
+.section__head--center .support,
+.section__head--center .section__lead { margin-inline: auto; }
+.section__head--center .support { max-width: 62ch; }
+.cta-row--center { justify-content: center; }
+
+/* Migalha de contexto */
+.crumbs { font-size: .82rem; color: var(--muted); margin-bottom: 1.2rem; }
+.crumbs a { color: var(--blue-deep); }
+.crumbs span { margin-inline: .45rem; opacity: .6; }
+
+/* Ticks com título em negrito + descrição (formação, listas ricas) */
+.ticks--rich li { padding-left: 1.9rem; }
+.ticks--rich li strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: .12rem; }
+.ticks--rich li span { color: var(--muted); }
+
+/* Painel com múltiplas sub-listas */
+.panel + .panel { margin-top: 1.2rem; }
+.panel__title + .feature-list { margin-bottom: 0; }
+.panel .panel__title:not(:first-child) { margin-top: 1.6rem; }
+.panel__note { margin-top: 1.3rem; padding-top: 1.1rem; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: .96rem; }
+.panel__note strong { color: var(--blue-deep); }
+
+/* Blocos de procedimento */
+.proc-stack { display: grid; gap: clamp(2rem, 5vw, 3.4rem); }
+
+/* Chips de categorias (blog) */
+.chips { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.4rem; }
+.chip { display: inline-flex; align-items: center; padding: .5rem 1.05rem; border-radius: 100px;
+  border: 1px solid var(--line); background: #fff; color: var(--ink-soft); font-size: .9rem; font-weight: 500; }
+
+/* Numeração de temas (blog) */
+.card__num { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px;
+  background: rgba(130,138,175,.16); color: var(--blue-deep); font-family: var(--serif); font-size: 1.05rem; margin-bottom: .8rem; }
+
+/* Estado vazio (depoimentos reais / posts do blog a inserir) */
+.placeholder { border: 1px dashed #c4cad9; border-radius: var(--radius-lg); background: #fff;
+  padding: clamp(1.8rem, 4vw, 2.8rem); text-align: center; color: var(--muted); }
+.placeholder h3 { color: var(--ink); font-size: 1.2rem; margin-bottom: .5rem; }
+
+/* Passos numerados (contato) */
+.steps { display: grid; gap: 1rem; margin-top: 1.2rem; }
+.step { display: flex; gap: .9rem; align-items: flex-start; }
+.step__n { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--ink); color: #fff; font-size: .9rem; font-weight: 600; margin-top: .1rem; }
+.step p { color: var(--ink-soft); }
+
+/* Depoimentos reais (reviews) — masonry por colunas */
+.reviews { columns: 2; column-gap: 1.3rem; margin-top: .5rem; }
+.review { break-inside: avoid; -webkit-column-break-inside: avoid; width: 100%;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(1.4rem, 2.4vw, 1.9rem); margin-bottom: 1.3rem; box-shadow: var(--shadow-soft); }
+.review__head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .75rem; }
+.review__stars { color: #e0a53a; letter-spacing: .14em; font-size: 1rem; }
+.review__new { flex: 0 0 auto; font-size: .64rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #fff; background: var(--terra); border-radius: 100px; padding: .22rem .6rem; }
+.review blockquote { color: var(--ink-soft); font-size: 1rem; line-height: 1.62; }
+.review blockquote p + p { margin-top: .7rem; }
+.review figcaption { margin-top: 1rem; padding-top: .85rem; border-top: 1px solid var(--line); font-size: .9rem; line-height: 1.4; }
+.review__author { color: var(--ink); font-weight: 600; }
+.review__meta { color: var(--muted); }
+@media (max-width: 760px) { .reviews { columns: 1; } }
+
+/* Carrossel do hero (uma imagem por vez, loop infinito) */
+.hero__media .carousel { position: relative; width: 100%; aspect-ratio: 1080 / 1320;
+  border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); background: #e9ecf2; }
+.hero__media .carousel__track { position: absolute; inset: 0; }
+.hero__media .carousel__track picture { display: contents; }
+.hero__media .carousel__slide { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 35%; border-radius: 0; box-shadow: none; aspect-ratio: auto;
+  opacity: 0; transition: opacity .9s var(--ease); }
+.hero__media .carousel__slide.is-active { opacity: 1; }
+.carousel__dots { position: absolute; left: 0; right: 0; bottom: 16px; z-index: 3;
+  display: flex; justify-content: center; gap: .5rem; }
+.carousel__dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  background: rgba(255,255,255,.55); box-shadow: 0 0 0 1px rgba(27,33,48,.18);
+  transition: transform .25s var(--ease), background .25s var(--ease); }
+.carousel__dot:hover { background: rgba(255,255,255,.85); }
+.carousel__dot.is-active { background: #fff; transform: scale(1.35); }
+.carousel__dot:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
 /* ---------- Acessibilidade: reduzir movimento ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
